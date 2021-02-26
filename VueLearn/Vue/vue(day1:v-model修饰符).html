@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model 修饰符</title>
+</head>
+<body>
+
+<div id="app">
+<!--  v-model.lazy:-->
+	<input type="text" v-model.lazy="message">
+	<h3>{{message}}</h3>
+
+<!--	v-model.number:-->
+	<input type="number" v-model.number="age">
+	<h2>{{age}} - {{typeof(age)}}</h2>
+
+<!--	v-model.trim: 清除输入框字符串中的空格-->
+	<input type="text" v-model="name">
+	<h3>{{name}}</h3>
+</div>
+
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	const vm = new Vue({
+		el: '#app',
+		data: {
+			message:'',
+			age: 0,
+			name: ''
+		}
+	})
+</script>
+
+</body>
+</html>

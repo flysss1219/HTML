@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+</head>
+<body>
+
+<div id="app">
+
+<!--	v-model-->
+
+<!--	v-model : text-->
+	<input type="text" v-model="message">
+<!--	<input type="text" :value="message" @input="message = $event.target.value"> 等价于v-model -->
+	{{message}}
+
+	<br>
+<!--	v-model : radio-->
+<!--	radio 相同name实现互斥-->
+	<label for="male"> <input type="radio" id="male" value="男" v-model="gender">男</label>
+	<label for="female"> <input type="radio" id="female" value="女" v-model="gender">女</label>
+	<p>您选择的性别是：{{gender}}</p>
+
+	<br>
+<!--  v-model : checkBox-->
+<!--	1、单选框-->
+	<label for="license"><input type="checkbox" id="license" v-model="isLicense">同意协议</label>
+	<p>您选择的是：{{isLicense}}</p>
+	<button :disabled="!isLicense">注册</button>
+
+	<br>
+<!--	2、多选框-->
+	<input type="checkbox" value="篮球" v-model="hobbies">篮球
+	<input type="checkbox" value="足球" v-model="hobbies">足球
+	<input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+	<input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+	<input type="checkbox" value="排球" v-model="hobbies">排球
+	<p>您选择的是：{{hobbies}}</p>
+
+<!--	v-model : selected-->
+<!--	单选-->
+	<select name="city" v-model="city">
+		<option value="北京">北京</option>
+		<option value="上海">上海</option>
+		<option value="广州">广州</option>
+		<option value="深圳">深圳</option>
+	</select>
+	<p>您选择的是：{{city}}</p>
+
+<!--	单选-->
+	<select name="city" v-model="citys" multiple>
+		<option value="北京">北京</option>
+		<option value="上海">上海</option>
+		<option value="广州">广州</option>
+		<option value="深圳">深圳</option>
+	</select>
+	<p>您选择的是：{{citys}}</p>
+
+
+<!--	vue 值绑定-->
+	<label v-for="item in citySources" :for="item">
+		<input type="checkbox" :value="item" :id="item" v-model="selectedCity">{{item}}
+	</label>
+	<p>您选择的是：{{selectedCity}}</p>
+</div>
+
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	const vm = new Vue({
+		el: '#app',
+		data: {
+			message: "hi vue",
+			gender: "女",
+			isLicense: false,
+			hobbies:[],
+			city:'北京',
+			citys: [],
+			citySources: ['北京','上海','广州','深圳'],
+			selectedCity:[]
+		}
+	})
+</script>
+
+
+</body>
+</html>

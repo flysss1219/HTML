@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for</title>
+</head>
+<body>
+
+<div id="app">
+<!--	v-for遍历数组-->
+	<ul>
+		<li v-for="(item,index) of names">{{ index+1 + '、' + item }}</li>
+	</ul>
+<!-- v-for遍历对象-->
+	<ul>
+		<li v-for="(value,key,index) of person">{{key + ':' + value + ' ' + index}}</li>
+	</ul>
+
+<!--	数组插入元素 array.splice(index:插入下标,deleteCount：删除元素格式,obj：插入元素):-->
+	<ul>
+<!--		<li v-for="(item,index) of names" :key="item">{{ index+1 + '、' + item }}</li>-->
+	</ul>
+	<button @click="btnCLick">点击</button>
+</div>
+
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	const vm = new Vue({
+		el: '#app',
+		data: {
+			names: ['kobe','james','curry','durant'],
+			person: {
+				name: 'hi vue',
+				age: 19,
+				height: 1.88
+			}
+		},
+		methods : {
+			btnCLick() {
+				//数组响应式方法
+				//push(obj1,obj2,obj3)
+				// this.names.push("leeeee")
+
+				//pop(): 删除最后一个元素
+				// this.names.pop();
+
+				//shift() : 删除第一个元素
+				// this.names.shift();
+				//unshift(obj1,obj2,obj3): 在数组头部添加元素
+
+				// sort()
+				// this.names.sort()
+				// reverse()
+				// this.names.reverse()
+
+				//splice()：
+				// 删除：（index:开始删除下标，count:删除元素个数不传默认删除后面所有元素）
+				// 替换：(index:替换下标，count：替换个数，替换元素：obj,obj,obj...)
+				// 插入：（index:插入下标，count:0,obj,obj...）插入时，count=0
+				// this.names.splice()
+
+				//数组非响应式方法：
+				//通过数组索引修改元素时，不会触发Vue响应式
+				this.names[0] = "lee"
+
+				//set(要修改的对象，索引值，要修改的对象)
+				Vue.set(this.names,0,'bbb')
+			},
+			//（...参数)：代表可变参数
+			mutableParamsMethod(...nums) {
+
+			}
+		}
+	})
+
+
+
+</script>
+
+</body>
+</html>

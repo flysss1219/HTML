@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on参数问题</title>
+</head>
+<body>
+<div id="app">
+    <button @click="btnClick('abc',$event)">button</button>
+
+<!--    v-on： 修饰符-->
+    <div @click="divClick">
+<!--        .stop:阻止事件冒泡-->
+        <button @click.stop="btnClick1">click</button>
+
+    </div>
+<!--阻止自动触发事件-->
+    <form action="submit">
+        <input type="text">
+        <input type="submit" value="提交" @click.prevent="submitClick">
+    </form>
+<!--监听键盘的某个键帽-->
+<!--    .enter，监听修饰符键盘enter键输入-->
+    <input type="text" @keyup.enter="keyup">
+
+<!--    .once：只响应一次事件-->
+    <buttton @click.once="onceClick">onceClick</buttton>
+</div>
+
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            //点击方法默认将点击事件作为参数传入方法中
+            /*
+            *
+            * */
+            btnClick(p1,event) {
+                console.log('---',p1,event)
+            },
+
+            divClick() {
+                console.log('---div')
+            },
+            btnClick1() {
+                console.log('---btn')
+            },
+            submitClick() {
+                console.log('---submit')
+            },
+            keyup() {
+                console.log('---keyup')
+            },
+            onceClick() {
+                console.log('---onceClick')
+            }
+
+        }
+    })
+</script>
+</body>
+</html>
